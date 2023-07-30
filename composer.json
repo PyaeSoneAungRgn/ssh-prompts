@@ -1,6 +1,6 @@
 {
     "name": "pyaesoneaung/ssh-prompts",
-    "description": "SSH Prompts Built with Laravel Prompts and Laravel Zero",
+    "description": "SSH account management cli tool developed with Laravel Prompts and Laravel Zero",
     "keywords": ["pyaesoneaung", "ssh", "laravel zero", "laravel prompts", "cli"],
     "homepage": "https://github.com/PyaeSoneAungRgn/ssh-prompts",
     "license": "MIT",

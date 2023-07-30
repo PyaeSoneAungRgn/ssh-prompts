@@ -2,7 +2,7 @@
 
 # SSH Prompts
 
-SSH Prompts Built with Laravel Prompts and Laravel Zero
+SSH account management cli tool developed with Laravel Prompts and Laravel Zero
 
 ## Global Installation
 
