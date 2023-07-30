@@ -13,7 +13,7 @@ ssh-prompts
 
 ## Local Installation
 
-Download the ssh-prompts file from the [Release page](https://github.com/PyaeSoneAungRgn/ssh-prompts/releases)
+Download the `ssh-prompts` file from the [Release page](https://github.com/PyaeSoneAungRgn/ssh-prompts/releases)
 
 ```bash
 cd /path/to/download/folder
