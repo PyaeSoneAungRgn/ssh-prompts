@@ -58,6 +58,13 @@ class HostService
         $this->put($hosts);
     }
 
+    public function clean()
+    {
+        if (Storage::exists($this->path)) {
+            Storage::delete($this->path);
+        }
+    }
+
     private function put($hosts)
     {
         Storage::put($this->path, json_encode($hosts));

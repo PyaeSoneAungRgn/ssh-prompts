@@ -1,9 +1,51 @@
+![Demo](https://res.cloudinary.com/pyaesoneaung/image/upload/v1690730841/opensources/ssh-prompts/demo.png)
+
 # SSH Prompts
 
-SSH CLI Client Built with Laravel Prompts and Laravel Zero
+SSH Prompts Built with Laravel Prompts and Laravel Zero
 
-## Installation
+## Global Installation
 
 ```bash
 composer global require pyaesoneaung/ssh-prompts
+ssh-prompts
 ```
+
+## Local Installation
+
+Download the ssh-prompts file from the [Release page](https://github.com/PyaeSoneAungRgn/ssh-prompts/releases)
+
+```bash
+cd /path/to/download/folder
+./ssh-prompts
+```
+
+## Usage
+
+#### List all host
+
+```bash
+ssh-prompts hosts
+```
+
+#### Create a host
+
+```bash
+ssh-prompts create
+```
+
+#### Update a host
+
+```bash
+ssh-prompts edit
+```
+
+#### Update a host
+
+```bash
+ssh-prompts delete
+```
+
+## Security
+
+I have built this project for personal use. SSH Prompts store all hosts' information in the `.db_ssh_prompts.json` file. For added security, you have the option to delete the `.db_ssh_prompts.json` file by running the command `ssh-prompts` clean. This ensures that your sensitive data is removed from the storage when necessary.
