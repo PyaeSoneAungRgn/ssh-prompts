@@ -55,6 +55,7 @@ return [
     */
 
     'hidden' => [
+        \App\Commands\Host\Clean::class,
         NunoMaduro\LaravelConsoleSummary\SummaryCommand::class,
         Symfony\Component\Console\Command\DumpCompletionCommand::class,
         Symfony\Component\Console\Command\HelpCommand::class,
