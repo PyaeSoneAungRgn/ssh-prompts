@@ -17,6 +17,7 @@ Download the `ssh-prompts` file from the [Release page](https://github.com/PyaeS
 
 ```bash
 cd /path/to/download/folder
+chmod +x ssh-prompts
 ./ssh-prompts
 ```
 
