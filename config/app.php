@@ -70,6 +70,6 @@ return [
         App\Providers\AppServiceProvider::class,
     ],
 
-    'host_path' => '.db_ssh_prompts.json',
+    'host_path' => 'db_ssh_prompts.json',
 
 ];
