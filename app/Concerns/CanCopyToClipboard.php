@@ -2,22 +2,33 @@
 
 namespace App\Concerns;
 
+use Illuminate\Support\Facades\Process;
 use function Termwind\{render};
 
 trait CanCopyToClipboard
 {
     public function copyToClipboard(string $cmd): void
     {
-        $exitCode = true;
+        $success = false;
         $osFamily = PHP_OS_FAMILY;
         if ($osFamily === 'Darwin') {
-            exec('echo '.escapeshellarg($cmd).' | pbcopy', $output, $exitCode);
+            $process = Process::run('echo '.escapeshellarg($cmd).' | pbcopy');
+            $success = $process->successful();
         } elseif ($osFamily == 'Linux') {
-            exec('echo '.escapeshellarg($cmd).' | xsel --clipboard --input', $output, $exitCode);
+            $process = Process::run('echo '.escapeshellarg($cmd).' | xsel --clipboard --input');
+            $success = $process->successful();
+        } elseif ($osFamily == 'Windows') {
+            $process = Process::run('echo '.escapeshellarg($cmd).' | clip');
+            $success = $process->successful();
         }
 
-        $copyMessage = $exitCode === 0 ? 'Copied to clipboard!' : 'Unable to copy to clipboard!';
-        $copyBackground = $exitCode === 0 ? 'bg-blue-300' : 'bg-red-300';
+        if ($success) {
+            $copyMessage = 'Copied to clipboard!';
+            $copyBackground = 'bg-blue-300';
+        } else {
+            $copyMessage = 'Unable to copy to clipboard!';
+            $copyBackground = 'bg-red-300';
+        }
 
         render(<<<"HTML"
             <div class="py-1 ml-2">

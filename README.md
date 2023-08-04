@@ -29,6 +29,12 @@ chmod +x ssh-prompts
 ssh-prompts hosts
 ```
 
+#### Search a host
+
+```bash
+ssh-prompts search
+```
+
 #### Create a host
 
 ```bash
@@ -41,11 +47,19 @@ ssh-prompts create
 ssh-prompts edit
 ```
 
-#### Update a host
+#### Delete a host
 
 ```bash
 ssh-prompts delete
 ```
+
+## Supported Enviroments
+
+| OS  | Support |
+| ------------- | ------------- |
+| Linux  | ✅ |
+| macOS  | ✅ |
+| Windows  | WSL |
 
 ## Security
 
