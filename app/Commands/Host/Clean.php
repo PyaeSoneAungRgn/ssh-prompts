@@ -2,6 +2,7 @@
 
 namespace App\Commands\Host;
 
+use App\Services\HostService;
 use Illuminate\Console\Scheduling\Schedule;
 use function Laravel\Prompts\outro;
 use LaravelZero\Framework\Commands\Command;
@@ -27,9 +28,9 @@ class Clean extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
-        app('hosts')->clean();
+        app(HostService::class)->clean();
         outro('Successfully cleaned!');
     }
 

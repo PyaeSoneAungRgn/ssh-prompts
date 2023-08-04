@@ -6,7 +6,7 @@ use function Laravel\Prompts\text;
 
 trait CanAskLabel
 {
-    public function askLabel(string $default = '')
+    public function askLabel(string $default = ''): string
     {
         return text(
             label: 'What is your host label?',

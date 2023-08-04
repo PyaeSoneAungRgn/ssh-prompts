@@ -6,7 +6,7 @@ use function Laravel\Prompts\text;
 
 trait CanAskUsername
 {
-    public function askUsername(string $default = '')
+    public function askUsername(string $default = ''): string
     {
         return text(
             label: 'What is your host username?',

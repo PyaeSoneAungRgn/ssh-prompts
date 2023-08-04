@@ -6,7 +6,7 @@ use function Laravel\Prompts\text;
 
 trait CanAskPort
 {
-    public function askPort(string $default = '22')
+    public function askPort(string $default = '22'): string
     {
         return text(
             label: 'What is your host port?',

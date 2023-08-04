@@ -2,14 +2,17 @@
 
 namespace App\Commands\Host;
 
+use App\Concerns\CanSearchHost;
+use App\Services\HostService;
 use Illuminate\Console\Scheduling\Schedule;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\outro;
-use function Laravel\Prompts\search;
 use LaravelZero\Framework\Commands\Command;
 
 class Delete extends Command
 {
+    use CanSearchHost;
+
     /**
      * The signature of the command.
      *
@@ -29,22 +32,16 @@ class Delete extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
-        $host = search(
-            label: 'Select a host',
-            placeholder: 'Search...',
-            options: fn ($value) => strlen($value) > 0
-                ? app('hosts')->search($value)
-                : []
-        );
+        $host = $this->searchHost();
 
         $confirm = confirm(
             label: 'Are you sure?',
         );
 
         if ($confirm) {
-            app('hosts')->delete($host);
+            app(HostService::class)->delete($host);
             outro('Successfully deleted!');
         }
     }

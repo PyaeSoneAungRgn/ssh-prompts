@@ -7,14 +7,15 @@ use App\Concerns\CanAskLabel;
 use App\Concerns\CanAskPort;
 use App\Concerns\CanAskSshKey;
 use App\Concerns\CanAskUsername;
+use App\Concerns\CanSearchHost;
+use App\Services\HostService;
 use Illuminate\Console\Scheduling\Schedule;
 use function Laravel\Prompts\outro;
-use function Laravel\Prompts\search;
 use LaravelZero\Framework\Commands\Command;
 
 class Edit extends Command
 {
-    use CanAskLabel, CanAskAddress, CanAskPort, CanAskUsername, CanAskSshKey;
+    use CanAskLabel, CanAskAddress, CanAskPort, CanAskUsername, CanAskSshKey, CanSearchHost;
 
     /**
      * The signature of the command.
@@ -35,17 +36,11 @@ class Edit extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
-        $host = search(
-            label: 'Select a host',
-            placeholder: 'Search...',
-            options: fn ($value) => strlen($value) > 0
-                ? app('hosts')->search($value)
-                : []
-        );
+        $host = $this->searchHost();
 
-        $host = app('hosts')->find($host);
+        $host = app(HostService::class)->find($host);
 
         $label = $this->askLabel($host['label']);
         $address = $this->askAddress($host['address']);
@@ -53,7 +48,7 @@ class Edit extends Command
         $username = $this->askUsername($host['username']);
         $keyPath = $this->askSshKey($host['key_path']);
 
-        app('hosts')->update($host['id'], [
+        app(HostService::class)->update($host['id'], [
             'label' => $label,
             'address' => $address,
             'port' => $port,

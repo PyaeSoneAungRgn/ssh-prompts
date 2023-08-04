@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -13,17 +14,17 @@ class HostService
         $this->setup();
     }
 
-    public function collect()
+    public function collect(): Collection
     {
         return collect(Storage::json($this->path));
     }
 
-    public function find($id)
+    public function find($id): array
     {
         return $this->collect()->where('id', $id)->first();
     }
 
-    public function search($label)
+    public function search($label): array
     {
         return $this->collect()
             ->filter(function ($host) use ($label) {
@@ -33,13 +34,13 @@ class HostService
             ->toArray();
     }
 
-    public function create($payload)
+    public function create($payload): void
     {
         $hosts = array_merge($this->collect()->toArray(), [$payload]);
         $this->put($hosts);
     }
 
-    public function update($id, $payload)
+    public function update($id, $payload): void
     {
         $hosts = $this->collect()
             ->map(function ($host) use ($id, $payload) {
@@ -52,20 +53,20 @@ class HostService
         $this->put($hosts);
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
         $hosts = $this->collect()->where('id', '!=', $id)->toArray();
         $this->put($hosts);
     }
 
-    public function clean()
+    public function clean(): void
     {
         if (Storage::exists($this->path)) {
             Storage::delete($this->path);
         }
     }
 
-    private function put($hosts)
+    private function put($hosts): void
     {
         Storage::put($this->path, json_encode($hosts));
     }

@@ -49,4 +49,4 @@ ssh-prompts delete
 
 ## Security
 
-I have built this project for personal use. SSH Prompts store all hosts' information in the `~/.ssh-prompts/db_ssh_prompts.json` file. For added security, you have the option to delete the `~/.ssh-prompts/db_ssh_prompts.json` file by running the command `ssh-prompts clean`. This ensures that your sensitive data is removed from the storage when necessary.
+I developed this project for personal use. SSH Prompts stores host information in the `~/.ssh-prompts/db_ssh_prompts.json` file. For enhanced security, you can delete this file using `ssh-prompts clean`. This deletes sensitive data from storage when needed.

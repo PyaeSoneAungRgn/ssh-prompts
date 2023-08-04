@@ -7,6 +7,7 @@ use App\Concerns\CanAskLabel;
 use App\Concerns\CanAskPort;
 use App\Concerns\CanAskSshKey;
 use App\Concerns\CanAskUsername;
+use App\Services\HostService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Str;
 use function Laravel\Prompts\outro;
@@ -35,7 +36,7 @@ class Create extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         $label = $this->askLabel();
         $address = $this->askAddress();
@@ -43,7 +44,7 @@ class Create extends Command
         $username = $this->askUsername();
         $keyPath = $this->askSshKey();
 
-        app('hosts')->create([
+        app(HostService::class)->create([
             'id' => Str::uuid()->toString(),
             'label' => $label,
             'address' => $address,

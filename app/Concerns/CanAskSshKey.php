@@ -6,7 +6,7 @@ use function Laravel\Prompts\suggest;
 
 trait CanAskSshKey
 {
-    public function askSshKey(string $default = '')
+    public function askSshKey(string $default = ''): string
     {
         return suggest(
             label: 'What is your ssh key path? (Optional)',

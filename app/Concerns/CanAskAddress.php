@@ -6,7 +6,7 @@ use function Laravel\Prompts\text;
 
 trait CanAskAddress
 {
-    public function askAddress(string $default = '')
+    public function askAddress(string $default = ''): string
     {
         return text(
             label: 'What is your host address?',

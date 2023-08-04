@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(
-            abstract: 'hosts',
+            abstract: HostService::class,
             concrete: fn () => new HostService(
                 path: config('app.host_path')
             )
